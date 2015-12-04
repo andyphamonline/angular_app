@@ -1,0 +1,15 @@
+<h1>Home Page</h1>
+
+<div class="well" ng-hide="switch">
+	<h2>Search for a movie in the box above</h2>
+</div>
+
+<div class="well" ng-repeat="movie in movies" ng-show="switch">
+	<div class="row">
+		<h4 class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><a ng-href="/#!/movie/{{movie.imdbID}}">{{movie.Title}}</a></h3>
+		<p class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Year: {{movie.Year}}</p>
+		<p class="col-xs-3 col-sm-3 col-md-3 col-lg-3">imdbID: {{movie.imdbID}}</p>
+		
+		<a href="#!/favorite" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 btn btn-info" ng-click="addToFavorite()">Add To Favorite</a>
+	</div>
+</div>
