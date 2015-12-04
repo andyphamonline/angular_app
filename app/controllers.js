@@ -1,5 +1,5 @@
 angular.module("MovieControllers", ["MovieServices"])
-	.controller("MovieController", ["$scope", "Movie", function($scope, Movie) {
+	.controller("MovieController", ["$scope", "Movie", "MovieFactory", function($scope, Movie, MovieFactory) {
 		
 		$scope.searchMovie = function(searchTerm) {
 			$scope.movies = [];
@@ -7,16 +7,20 @@ angular.module("MovieControllers", ["MovieServices"])
 			$scope.test = "test";
 			Movie.get({s: searchTerm}, function success(data) {
 				$scope.movies = data.Search;
+				// $scope.toFavorite = MovieFactory.favorites;
+				// console.log($scope.toFavorite);
 			}, function error(data) {
 				console.log(data);
 			});
 		}
 
-		$scope.addToFavorite = function() {
+		$scope.addToFavorite = function(favorite) {
+			console.log("favorite", favorite);
 			$scope.favorites = [];
-			$scope.test;
-
+			$scope.favorites.push(favorite);
+			MovieFactory.favorites = $scope.favorites;
 		}
+
 	}])
 	.controller("MovieShowController", ["$scope", "$routeParams", "OneMovie", function($scope, $routeParams, OneMovie) {
 		
@@ -31,4 +35,10 @@ angular.module("MovieControllers", ["MovieServices"])
 		});
 	
 		
-	}]);
+	}]).controller("FavoriteController", ["$scope", "MovieFactory", function($scope, MovieFactory) {
+		$scope.favorites = MovieFactory.favorites;
+		// window.localStorage.favoritesArray = MovieFactory.favorites;
+	}])
+
+
+	;
