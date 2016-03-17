@@ -19,6 +19,7 @@ angular.module("MovieControllers", ["MovieServices"])
 			$scope.favorites = [];
 			$scope.favorites.push(favorite);
 			MovieFactory.favorites = $scope.favorites;
+			// window.localStorage.favoritesArray = MovieFactory.favorites;
 		}
 
 	}])
@@ -37,7 +38,6 @@ angular.module("MovieControllers", ["MovieServices"])
 		
 	}]).controller("FavoriteController", ["$scope", "MovieFactory", function($scope, MovieFactory) {
 		$scope.favorites = MovieFactory.favorites;
-		// window.localStorage.favoritesArray = MovieFactory.favorites;
 	}])
 
 
